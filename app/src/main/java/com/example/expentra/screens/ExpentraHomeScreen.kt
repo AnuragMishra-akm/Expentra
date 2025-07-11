@@ -64,7 +64,7 @@ import com.example.expentra.ui.theme.ExpentraTheme
 fun ExpentraHomeScreen() {
     val paradiso = Color(0xFF388B85)
     val hitPink = Color(0xFFFFAB7B)
-    val backgroundColor = Color(0xFFF5F5F7)
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     Scaffold(
         containerColor = backgroundColor,
@@ -88,13 +88,13 @@ fun ExpentraHomeScreen() {
                 Column(modifier = Modifier.padding(24.dp)) {
                     Text(
                         text = "Good afternoon,",
-                        style = MaterialTheme.typography.bodyMedium.copy(color = backgroundColor)
+                        style = MaterialTheme.typography.bodyMedium.copy(color = Color.White)
                     )
                     Text(
                         text = "Enjelin Morgeana",
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.Bold,
-                            color = backgroundColor
+                            color = Color.White
                         )
                     )
 
@@ -115,7 +115,7 @@ fun ExpentraHomeScreen() {
                     Icon(
                         imageVector = Icons.Default.Notifications,
                         contentDescription = "Notifications",
-                        tint = backgroundColor,
+                        tint = Color.White,
                         modifier = Modifier.align(Alignment.Center)
                     )
 
@@ -132,7 +132,7 @@ fun ExpentraHomeScreen() {
             }
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = backgroundColor),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -201,15 +201,15 @@ fun ExpentraHomeScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text("Transactions History", fontWeight = FontWeight.Bold)
-                    Text("See all", color = Color.Gray, fontSize = 12.sp)
+                    Text("Transactions History", color = MaterialTheme.colorScheme.onBackground ,fontWeight = FontWeight.Bold)
+                    Text("See all", color = MaterialTheme.colorScheme.secondary, fontSize = 12.sp)
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Card(
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -261,8 +261,8 @@ fun IncomeExpenseCard(
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
-        Text(title, color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
-        Text(amount, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+        Text(title, color = MaterialTheme.colorScheme.secondary, style = MaterialTheme.typography.bodyMedium)
+        Text(amount,color = MaterialTheme.colorScheme.onBackground ,fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
     }
 }
 
@@ -284,7 +284,7 @@ fun BalanceCard(balanceAmount: String) {
             text = "$ ${String.format("%,d", animatedBalance)}.00",
             style = MaterialTheme.typography.headlineSmall.copy(
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.onBackground
             )
         )
     }
@@ -310,8 +310,8 @@ fun TransactionItem(title: String, amount: String, date: String, amountColor: Co
         Spacer(modifier = Modifier.width(12.dp))
 
         Column(modifier = Modifier.weight(1f)) {
-            Text(title, fontWeight = FontWeight.SemiBold)
-            Text(date, fontSize = 12.sp, color = Color.Gray)
+            Text(title, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onBackground)
+            Text(date, fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary)
         }
 
         Text(amount, color = amountColor, fontWeight = FontWeight.Bold)
@@ -324,7 +324,7 @@ fun BottomNavWithFab(primaryColor: Color) {
         modifier = Modifier
             .fillMaxWidth()
             .height(72.dp)
-            .background(Color.White),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center,
     ) {
         Row(
@@ -335,10 +335,10 @@ fun BottomNavWithFab(primaryColor: Color) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(Icons.Default.Home, contentDescription = null, tint = primaryColor)
-            Icon(imageVector = Icons.Filled.BarChart, contentDescription = null, tint = Color.Gray)
+            Icon(imageVector = Icons.Filled.BarChart, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
             Spacer(modifier = Modifier.width(48.dp)) // for FAB
-            Icon(Icons.Filled.CreditCard, contentDescription = null, tint = Color.Gray)
-            Icon(Icons.Default.Person, contentDescription = null, tint = Color.Gray)
+            Icon(Icons.Filled.CreditCard, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
+            Icon(Icons.Default.Person, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
         }
 
         FloatingActionButton(
