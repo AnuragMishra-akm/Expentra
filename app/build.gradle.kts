@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("kapt")
 }
 
 android {
@@ -40,6 +41,14 @@ android {
 }
 
 dependencies {
+
+    val room_version = "2.7.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.graphics:graphics-core:1.0.3")
     implementation("androidx.graphics:graphics-path:1.0.1")
